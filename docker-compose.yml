@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV_FILE: .env  # 環境ごとに適切な .env ファイルを使用
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+    env_file:
+      - .env  # 環境ごとに異なる .env ファイルを指定

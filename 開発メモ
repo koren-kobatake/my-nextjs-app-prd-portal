@@ -1,0 +1,13 @@
+・next.jsインストール
+    npx create-next-app@latest --ts my-nextjs-app-prd
+    ✔ Would you like to use ESLint? … No / Yes
+    ✔ Would you like to use Tailwind CSS? … No / Yes
+    ✔ Would you like to use `src/` directory? … No / Yes
+    ✔ Would you like to use App Router? (recommended) … No / Yes
+    ✔ Would you like to customize the default import alias (@/*)? … No / Yes
+    ✔ What import alias would you like configured? … @/*
+
+・Node.jsのバージョン管理ツールでプロジェクトのNodeバージョンに以下を指定すること
+ （nvm、nodenv、nなどツールは個人にお任せします）
+    node:20.14.0
+
