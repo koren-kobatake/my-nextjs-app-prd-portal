@@ -7,11 +7,8 @@ import { NavMenu } from '@/components/NavMenu'
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='ja'>
-      <body className='flex flex-col min-h-screen'>
-        {/* <Header /> */}
-        <div className='pt-16 flex-grow'>
-          {/* <Navbar />
-          <NavMenu /> */}
+      <body className='flex flex-col min-h-screen bg-gray-100'>
+        <div className='flex-grow'>
           <main className='flex-grow'>{children}</main>
         </div>
         <Footer />

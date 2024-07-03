@@ -15,3 +15,8 @@
 npm i --save-dev @types/cookie
 npm install cookies crypto
 
+・色
+白：#fff
+濃いめのグレー：#d4d5d5
+薄めのグレー：#e5e5e5
+
