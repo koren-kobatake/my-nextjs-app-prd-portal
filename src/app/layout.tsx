@@ -8,10 +8,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='ja'>
       <body className='flex flex-col min-h-screen'>
-        <Header />
+        {/* <Header /> */}
         <div className='pt-16 flex-grow'>
-          <Navbar />
-          <NavMenu />
+          {/* <Navbar />
+          <NavMenu /> */}
           <main className='flex-grow'>{children}</main>
         </div>
         <Footer />

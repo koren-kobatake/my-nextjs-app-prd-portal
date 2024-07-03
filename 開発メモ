@@ -11,3 +11,7 @@
  （nvm、nodenv、nなどツールは個人にお任せします）
     node:20.14.0
 
+・暗号化（セッション用）
+npm i --save-dev @types/cookie
+npm install cookies crypto
+
