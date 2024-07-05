@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react';
 
 export default function LoginPage() {
   const [userId, setUserId] = useState('');
+  const [cic, setCic] = useState('');
   const [message, setMessage] = useState('');
   const [session, setSession] = useState<any>(null);
 
@@ -15,7 +16,7 @@ export default function LoginPage() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ USERID: userId }),
+      body: JSON.stringify({ USERID: userId,  CIC: cic }),
     });
 
     const data = await response.json();
@@ -55,6 +56,15 @@ export default function LoginPage() {
           name='userId'
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
+          required
+        />
+        <label htmlFor='cic'>CIC:</label>
+        <input
+          type='text'
+          id='cic'
+          name='cic'
+          value={cic}
+          onChange={(e) => setCic(e.target.value)}
           required
         />
         <button type='submit'>Login</button>

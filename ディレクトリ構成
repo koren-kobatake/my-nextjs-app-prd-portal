@@ -62,13 +62,20 @@ src/app/api/consts.ts
 を定数にしたいので修正してください。
 以下は現行のコードです
 -----------------------------
+
+Next.js（バージョン14）でWebアプリを開発しています。
+セッション管理に「Iron Session」を使おうと思います
+サンプルコードを提示してください
+現行のコードは以下です
+-----------------------------
 //src/app/ledgerInquiry/useLedgerInquiry.tsx
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { RedgerTable } from "@/components/LedgerTable/types";
+import { LedgerTableType } from "./types";
+import { API_URLS } from "@/app/consts";
 
 export function useLedgerInquiry() {
-    const [ledgerItems, setLedgerItems] = useState<RedgerTable[]>([]);
+    const [ledgerItems, setLedgerItems] = useState<LedgerTableType[]>([]);
     const searchParams = useSearchParams();
     const userId = searchParams.get('userId');
     const cic = searchParams.get('cic');
@@ -77,7 +84,7 @@ export function useLedgerInquiry() {
         if (userId && cic) {
             console.log('UserID:', userId);
             console.log('CIC:', cic);
-            fetch('/api/ledgerInquiry/listing')
+            fetch(API_URLS.LEDGER_LISTING)
                 .then(response => response.json())
                 .then(data => {
                     setLedgerItems(data.items);
@@ -91,11 +98,12 @@ export function useLedgerInquiry() {
     return { ledgerItems };
 }
 
+
 -----------------------------
 // src/app/ledgerInquiry/page.tsx
-'use client'; // クライアントコンポーネントとしてマーク
+'use client';
 
-import { LedgerTable } from "@/components/LedgerTable";
+import { LedgerTable } from "./components/LedgerTable";
 import { useLedgerInquiry } from "./useLedgerInquiry";
 
 export default function LedgerInquiryPage() {
@@ -114,8 +122,24 @@ import { NextRequest, NextResponse } from 'next/server'
 import logger from '@/lib/logger';
 
 export async function GET(req: NextRequest) {
-  logger.info('[INFO] Listing API called');
-  return NextResponse.json({ message: 'Listing API called!' })
+  logger.info('Listing API called');
+
+  const items = [
+    { id: 1, issueDate: "2024-05-01", documentName: "XXXXXXXXXX" },
+    { id: 2, issueDate: "2024-04-01", documentName: "YYYYYYYYYY" },
+    { id: 3, issueDate: "2024-03-01", documentName: "ZZZZZZZZZZ" },
+    { id: 4, issueDate: "2024-02-01", documentName: "XXXXXXXXXX" },
+    { id: 5, issueDate: "2024-01-01", documentName: "YYYYYYYYYY" },
+    { id: 6, issueDate: "2023-12-01", documentName: "ZZZZZZZZZZ" },
+    { id: 7, issueDate: "2023-11-01", documentName: "XXXXXXXXXX" },
+    { id: 8, issueDate: "2023-10-01", documentName: "YYYYYYYYYY" },
+    { id: 9, issueDate: "2023-09-01", documentName: "ZZZZZZZZZZ" },
+    { id: 10, issueDate: "2023-08-01", documentName: "XXXXXXXXXX" },
+    { id: 11, issueDate: "2023-07-01", documentName: "XXXXXXXXXX" },
+    { id: 12, issueDate: "2023-06-15", documentName: "YYYYYYYYYY" },
+  ];
+
+  return NextResponse.json({ items });
 }
 
 -----------------------------
@@ -197,3 +221,43 @@ export function LedgerTable({ items }: { items: RedgerTable[] }) {
   );
 }
 
+
+
+
+-----------------------------
+useEffectで
+fetch(API_URLS.LEDGER_LISTING)
+を実行する前にセッションを作成したい
+セッション管理はnext-sessionを使う
+サンプリコードを提示してください
+-----------------------------
+//src/app/ledgerInquiry/useLedgerInquiry.tsx
+
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { LedgerTableType } from "./types";
+import { API_URLS } from "@/app/consts";
+
+export function useLedgerInquiry() {
+    const [ledgerItems, setLedgerItems] = useState<LedgerTableType[]>([]);
+    const searchParams = useSearchParams();
+    const userId = searchParams.get('userId');
+    const cic = searchParams.get('cic');
+
+    useEffect(() => {
+        if (userId && cic) {
+            console.log('UserID:', userId);
+            console.log('CIC:', cic);
+            fetch(API_URLS.LEDGER_LISTING)
+                .then(response => response.json())
+                .then(data => {
+                    setLedgerItems(data.items);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+    }, [userId, cic]);
+
+    return { ledgerItems };
+}

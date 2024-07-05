@@ -1,4 +1,5 @@
 export const API_URLS = {
+    LOGIN: '/api/auth/login',
     LEDGER_LISTING: '/api/ledgerInquiry/listing',
     LEDGER_DOWNLOAD: (id: number) => `/api/ledgerInquiry/download?id=${id}`,
 };
