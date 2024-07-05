@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Pagination } from "@/components/ui/pagination";
-import { RedgerTable } from "@/components/LedgerTable/types";
+import { LedgerTableType } from "../types";
+import { API_URLS } from "@/app/consts";
 
-export function LedgerTable({ items }: { items: RedgerTable[] }) {
+export function LedgerTable({ items }: { items: LedgerTableType[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(20);
   const totalItems = items.length;
@@ -21,7 +21,7 @@ export function LedgerTable({ items }: { items: RedgerTable[] }) {
 
   const handleDownload = async (id: number) => {
     try {
-      const response = await fetch(`/api/ledgerInquiry/download?id=${id}`);
+      const response = await fetch(API_URLS.LEDGER_DOWNLOAD(id));
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

@@ -1,15 +1,13 @@
-import { Header } from '@/components/common/Header'
-import { Title } from '@/components/common/Title'
+import { Title } from '@/components/common/Title';
+import { TITLE_NAMES } from '@/app/consts';
 
-export default function ledgerDownloadLayout({ children }: { children: React.ReactNode }) {
-    return (
-      <div >
-        <Header />
-        <div className="mb-5">
-            <Title />
-        </div>
-        {children}
+export default function LedgerInquiryLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div>
+      <div className="mb-5">
+        <Title title={TITLE_NAMES.LEDGER_INQUIRY} />
       </div>
-    )
-  }
-  
+      {children}
+    </div>
+  );
+}
