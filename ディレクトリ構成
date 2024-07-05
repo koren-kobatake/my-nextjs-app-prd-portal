@@ -22,9 +22,15 @@
 │   │   │   ├── index.tsx    
 │   │   │   └── types.d.ts              
 │   │   └── ...                  
-│   ├── types/                   # TypeScriptの型定義を格納するディレクトリ
-│   │   ├── index.d.ts           # 型定義ファイル
-│   │   └── ...                  # その他の型定義ファイル
+│   ├── lib/            
+│   │   └── ...         
+│   ├── styles/         
+│   │   └── globals.css 
+│   ├── types/          
+│   │   ├── index.d.ts  
+│   │   └── ...         
+│   ├── utils/          
+│   │   └── ...         
 
 
 以下のようなコードが必要です。
@@ -164,3 +170,13 @@ export type RedgerTable = {
   documentName: string;
 }
 
+----------------------
+
+以下のようなコードが必要です。
+-----------------------------
+src/components/LedgerTable
+のダウンロードボタンを押下したら
+該当レコードのIDを使って
+src/app/api/ledgerInquiry/download
+をAPIコールしてPDFファイルをダウンロードする
+-----------------------------
