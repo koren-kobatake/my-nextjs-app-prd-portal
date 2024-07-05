@@ -13,6 +13,8 @@ if (!secretKey) {
 }
 const secret = Uint8Array.from(Buffer.from(secretKey, 'hex'));
 
+
+
 export async function POST(req: NextRequest) {
 
   // const crypto = require('crypto');
@@ -39,16 +41,16 @@ export async function POST(req: NextRequest) {
     // const cookie = serialize('user', encryptedUserId, { path: '/', httpOnly: true, secure: true });
 
     const baseUrl = `http://localhost:3000`;
-    const redirectUrl = `${baseUrl}/ledger`;
+        const redirectUrl = `${baseUrl}/ledger`;
 
-    const response = NextResponse.redirect(redirectUrl);
-    response.headers.set('Set-Cookie', cookie);
+        const response = NextResponse.redirect(redirectUrl);
+        response.headers.set('Set-Cookie', cookie);
 
-    // CORSヘッダーを追加
-    response.headers.set('Access-Control-Allow-Origin', '*');
-    response.headers.set('Access-Control-Allow-Credentials', 'true');    
+        // CORSヘッダーを追加
+        // response.headers.set('Access-Control-Allow-Origin', '127.0.0.1:8000');
+        response.headers.set('Access-Control-Allow-Credentials', 'true');    
 
-    return response;
+        return response;
   } else {
     const response = NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     response.headers.set('Access-Control-Allow-Origin', '*');

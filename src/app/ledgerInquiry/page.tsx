@@ -2,9 +2,9 @@
 
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { LedgerTable } from "@/components/LedgerTable_BK";
+import { LedgerTable } from "@/components/LedgerTable";
 
-export default function RedgerInquiryPage() {
+export default function ledgerInquiryPage() {
 
     const searchParams = useSearchParams();
     const userId = searchParams.get('userId');

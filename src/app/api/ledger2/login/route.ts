@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     response.headers.set('Set-Cookie', cookie);
 
     // CORSヘッダーを追加
-    response.headers.set('Access-Control-Allow-Origin', '*');
+    response.headers.set('Access-Control-Allow-Origin', '127.0.0.1:8000');
     response.headers.set('Access-Control-Allow-Credentials', 'true');    
 
     return response;

@@ -34,7 +34,7 @@ export async function middleware(req: NextRequest) {
   if (token) {
     try {
       const { payload } = await jwtDecrypt(token, secret);
-      if (req.nextUrl.pathname === '/ledger2') {
+      if (req.nextUrl.pathname === '/ledger') {
         return NextResponse.next();
       }
     } catch (err) {
@@ -44,7 +44,7 @@ export async function middleware(req: NextRequest) {
       response.headers.set('Access-Control-Allow-Credentials', 'true');
       return response;
     }
-  } else if (req.nextUrl.pathname === '/ledger2') {
+  } else if (req.nextUrl.pathname === '/ledger') {
     const response = NextResponse.redirect(new URL('/login', req.url));
     response.headers.set('Access-Control-Allow-Origin', '*');
     response.headers.set('Access-Control-Allow-Credentials', 'true');
@@ -55,5 +55,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/ledger2'],
+  matcher: ['/ledger'],
 };
