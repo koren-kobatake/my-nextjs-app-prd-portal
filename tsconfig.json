@@ -1,5 +1,42 @@
 {
   "compilerOptions": {
+    /**
+     * TypeScriptのコンパイラオプションを設定します。
+     * 
+     * 主な設定項目:
+     * 
+     * 1. target:
+     *    - コンパイルされたJavaScriptのターゲットバージョンを指定します。
+     *    - 例: "ES5", "ES6/ES2015", "ESNext"
+     * 
+     * 2. module:
+     *    - モジュールシステムを指定します。
+     *    - 例: "CommonJS", "ES6", "ESNext"
+     * 
+     * 3. strict:
+     *    - 厳格な型チェックを有効にします。
+     *    - すべての厳格モードのオプション（strictNullChecks、strictFunctionTypesなど）を有効にします。
+     * 
+     * 4. jsx:
+     *    - JSXコードのコンパイル方法を指定します。
+     *    - 例: "react", "preserve", "react-native"
+     * 
+     * 5. baseUrl, paths:
+     *    - モジュール解決のための基本パスとエイリアスを設定します。
+     *    - これにより、インポートパスを短縮して書くことができます。
+     * 
+     * 6. outDir:
+     *    - コンパイルされたファイルの出力ディレクトリを指定します。
+     * 
+     * 7. esModuleInterop:
+     *    - CommonJSモジュールをES6モジュールとしてインポートできるようにする互換性オプションです。
+     * 
+     * 使用例:
+     * - プロジェクトのルートにこのファイルを配置し、TypeScriptコンパイラ(tsc)を使用してプロジェクトをビルドします。
+     * 
+     * 注意:
+     * - このファイルの設定は、プロジェクトの構成や要件に合わせて適宜変更してください。
+     */
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

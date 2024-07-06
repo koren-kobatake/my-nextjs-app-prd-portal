@@ -6,6 +6,15 @@ import { Button } from "@/components/ui/button";
 import { LedgerTableType } from "../types";
 import { API_URLS } from "@/app/consts";
 
+/**
+ * LedgerTable
+ * 
+ * 帳票データをテーブル形式で表示し、ページネーションとダウンロード機能を提供する。
+ * 
+ * @param {LedgerTableType[]} props.items - 帳票データの配列
+ * 
+ * @returns {JSX.Element} - テーブルコンポーネント
+ */
 export function LedgerTable({ items }: { items: LedgerTableType[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(20);
@@ -23,7 +32,7 @@ export function LedgerTable({ items }: { items: LedgerTableType[] }) {
     try {
       const response = await fetch(API_URLS.LEDGER_DOWNLOAD(id));
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('ネットワーク応答が正常ではありません');
       }
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -34,7 +43,7 @@ export function LedgerTable({ items }: { items: LedgerTableType[] }) {
       a.click();
       a.remove();
     } catch (error) {
-      console.error('Error downloading file:', error);
+      console.error('ファイルのダウンロードエラー:', error);
     }
   };
 

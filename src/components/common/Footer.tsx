@@ -1,3 +1,11 @@
+/**
+ * Footerコンポーネント
+ * 
+ * アプリケーションのフッター部分を表します。
+ * 
+ * 使用例:
+ * <Footer />
+ */
 export const Footer = () => {
     return (
       <footer className='bg-white p-4 text-center text-[#535258]'>

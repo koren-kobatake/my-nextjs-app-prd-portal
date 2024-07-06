@@ -9,8 +9,33 @@ if (!secretKey) {
 }
 const secret = Uint8Array.from(Buffer.from(secretKey, 'hex'));
 
-
-
+/**
+ * Middleware
+ * 
+ * Next.jsアプリケーションにおいてリクエストをインターセプトし、
+ * 認証、リダイレクト、ロギング、ヘッダー設定などの追加処理を実行します。
+ * 
+ * 主な役割:
+ * 1. 認証と認可:
+ *    - 特定のページにアクセスする前にユーザーが認証されているかを確認します。
+ *    - ユーザーが特定の権限を持っているかを確認します。
+ * 
+ * 2. リダイレクト:
+ *    - 特定の条件に基づいてユーザーを別のページにリダイレクトします。
+ * 
+ * 3. ロギング:
+ *    - リクエストやレスポンスの情報を記録します。
+ * 
+ * 4. ヘッダーの設定:
+ *    - セキュリティヘッダーやキャッシュ制御ヘッダーを設定します。
+ * 
+ * 使用例:
+ * - このミドルウェアを適用するためには、特定のルートを`matcher`設定で指定します。
+ * - 例: '/protected'以下のすべてのルートにミドルウェアを適用するには、`matcher: '/protected/:path*'`を設定します。
+ * 
+ * @param {NextRequest} req - Next.jsのリクエストオブジェクト
+ * @returns {NextResponse} - Next.jsのレスポンスオブジェクト
+ */
 export async function middleware(req: NextRequest) {
 
   // `x-forwarded-host` と `origin` ヘッダーの検証をスキップするためにエラーメッセージを無視

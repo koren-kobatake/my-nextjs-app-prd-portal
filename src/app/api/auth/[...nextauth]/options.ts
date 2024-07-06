@@ -9,18 +9,35 @@ export const authOptions: NextAuthOptions = {
         // 任意のプロバイダー設定
       ],
       callbacks: {
+        async jwt({ token, user }) {
+          if (user) {
+            token.userId = user.userId;
+            token.cic = user.cic;
+            token.role = user.role;
+            token.env = user.env;
+            token.jti = user.jti || token.jti;
+          }
+          return token;
+        },
         async session({ session, token }: { session: any; token: JWT }) {
-          session.userId = token.userId;
-          session.cic = token.cic;
-          session.role = token.role;
-          session.env = token.env;
+          // session.userId = token.userId;
+          // session.cic = token.cic;
+          // session.role = token.role;
+          // session.env = token.env;
+          // session.sessionId = token.jti;
+          session.user = {
+            ...session.user,
+            userId: token.userId,
+            cic: token.cic,
+            role: token.role,
+            env: token.env,
+          };
           session.sessionId = token.jti;
           // 有効期限を追加
           if (maxAge) {
             const expiresIn = maxAge * 1000; // ミリ秒に変換
             session.expires = new Date(Date.now() + expiresIn).toISOString();
           }
-          console.log(session)
           return session;
         },
       },
