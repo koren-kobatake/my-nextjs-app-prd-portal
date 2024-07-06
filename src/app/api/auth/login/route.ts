@@ -13,6 +13,7 @@ export async function POST(request: NextRequest) {
   // TODO 認証処理（Lambda呼び出し）
 
   // セッション生成
+  // TODO：roleは現段階では不要だが、将来的には必要になるかも、一旦削除予定
   const token = await encode({
     token: {
       userId: USERID,

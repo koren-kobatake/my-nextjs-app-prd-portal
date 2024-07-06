@@ -1,3 +1,11 @@
+// TODO 
+// 法人ポータルからの画面遷移はセキュリティを考慮してPOSTで本APIをコールして
+// 帳票照会画面をリダイレクトしたいのだが、7/5時点でうまくいっていない
+// GETなら問題ないため、一旦GETでユーザIDとCICをURLパラメタ渡しする方向で進める
+// URL叩けば帳票照会画面に遷移可能なので、その方が開発も進めやすいかも
+// ただし、セキュリティ的には平文でGETでユーザIDとCICを渡すのは避けたいので、
+// 暗号化して渡すか、POSTでリクエストボディに渡せるように調査するか、検討と判断が必要
+
 import { NextRequest, NextResponse } from 'next/server';
 import { serialize } from 'cookie';
 import { EncryptJWT, generateSecret } from 'jose';
@@ -12,8 +20,6 @@ if (!secretKey) {
   throw new Error('SECRET_KEY environment variable is not set');
 }
 const secret = Uint8Array.from(Buffer.from(secretKey, 'hex'));
-
-
 
 export async function POST(req: NextRequest) {
 
@@ -41,16 +47,16 @@ export async function POST(req: NextRequest) {
     // const cookie = serialize('user', encryptedUserId, { path: '/', httpOnly: true, secure: true });
 
     const baseUrl = `http://localhost:3000`;
-        const redirectUrl = `${baseUrl}/ledger`;
+    const redirectUrl = `${baseUrl}/ledgerInquiry`;
 
-        const response = NextResponse.redirect(redirectUrl);
-        response.headers.set('Set-Cookie', cookie);
+    const response = NextResponse.redirect(redirectUrl);
+    response.headers.set('Set-Cookie', cookie);
 
-        // CORSヘッダーを追加
-        // response.headers.set('Access-Control-Allow-Origin', '127.0.0.1:8000');
-        response.headers.set('Access-Control-Allow-Credentials', 'true');    
+    // CORSヘッダーを追加
+    response.headers.set('Access-Control-Allow-Origin', '127.0.0.1:8000');
+    response.headers.set('Access-Control-Allow-Credentials', 'true');    
 
-        return response;
+    return response;
   } else {
     const response = NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     response.headers.set('Access-Control-Allow-Origin', '*');
