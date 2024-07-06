@@ -14,8 +14,8 @@ import { API_URLS } from "@/app/consts";
 export function useLedgerInquiry() {
     const [ledgerItems, setLedgerItems] = useState<LedgerTableType[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [message, setMessage] = useState<MessageAreaType>({ text: '', type: 'info' });
+    const [message, setMessage] = useState<string | null>(null);
+    const [messageArea, setMessageArea] = useState<MessageAreaType>({ text: '', type: 'info' });
     const searchParams = useSearchParams();
     const userId = searchParams.get('userId');
     const cic = searchParams.get('cic');
@@ -36,7 +36,7 @@ export function useLedgerInquiry() {
                     console.log(loginResponse)
 
                     if (!loginResponse.ok) {
-                        setError('ログインエラー');
+                        setMessage('ログインエラー');
                         setLoading(false);
                         return;
                     }
@@ -66,11 +66,10 @@ export function useLedgerInquiry() {
     }, [userId, cic]);
 
     useEffect(() => {
-        // エラーメッセージがある場合、メッセージエリアにセット
-        if (error) {
-          setMessage({ text: error, type: 'error' });
+        if (message) {
+          setMessageArea({ text: message, type: 'error' });
         }
-    }, [error]);    
+    }, [message]);    
 
-    return { ledgerItems, loading, error, message };  // loadingを追加
+    return { ledgerItems, loading, message, messageArea };
 }

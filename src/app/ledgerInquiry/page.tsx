@@ -3,13 +3,7 @@
 import '@/styles/globals.css';
 import { LedgerTable } from "./components/LedgerTable";
 import { useLedgerInquiry } from "./useLedgerInquiry";
-import { MessageArea, MessageType } from "@/components/common/MessageArea";
-import { useState, useEffect } from 'react';
-
-interface Message {
-  text: string;
-  type: MessageType;
-}
+import { MessageArea } from "@/components/common/MessageArea";
 
 /**
  * LedgerInquiryPageコンポーネント
@@ -24,15 +18,7 @@ interface Message {
  * <LedgerInquiryPage />
  */
 export default function LedgerInquiryPage() {
-  const { ledgerItems, loading, error } = useLedgerInquiry();
-  const [message, setMessage] = useState<Message>({ text: '', type: 'info' });
-
-  useEffect(() => {
-    // エラーメッセージがある場合、メッセージエリアにセット
-    if (error) {
-      setMessage({ text: error, type: 'error' });
-    }
-  }, [error]);
+  const { ledgerItems, loading, messageArea } = useLedgerInquiry();
 
   if (loading) {
     return (
@@ -44,7 +30,7 @@ export default function LedgerInquiryPage() {
 
   return (
     <div className='container mx-auto bg-white'>
-      <MessageArea message={message.text} type={message.type} />
+      <MessageArea message={messageArea.text} type={messageArea.type} />
       <div className='mt-1'>
         <LedgerTable items={ledgerItems} />
       </div>
