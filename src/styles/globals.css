@@ -88,3 +88,14 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.error-boundary-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2rem;
+  color: red;
+  background-color: #f8d7da;
+  text-align: center;
+}

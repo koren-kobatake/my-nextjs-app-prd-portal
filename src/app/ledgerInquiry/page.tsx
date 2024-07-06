@@ -1,7 +1,15 @@
 'use client';
-import '@/styles/globals.css'
+
+import '@/styles/globals.css';
 import { LedgerTable } from "./components/LedgerTable";
 import { useLedgerInquiry } from "./useLedgerInquiry";
+import { MessageArea, MessageType } from "@/components/common/MessageArea";
+import { useState, useEffect } from 'react';
+
+interface Message {
+  text: string;
+  type: MessageType;
+}
 
 /**
  * LedgerInquiryPageコンポーネント
@@ -16,19 +24,30 @@ import { useLedgerInquiry } from "./useLedgerInquiry";
  * <LedgerInquiryPage />
  */
 export default function LedgerInquiryPage() {
-  const { ledgerItems, loading } = useLedgerInquiry();
+  const { ledgerItems, loading, error } = useLedgerInquiry();
+  const [message, setMessage] = useState<Message>({ text: '', type: 'info' });
+
+  useEffect(() => {
+    // エラーメッセージがある場合、メッセージエリアにセット
+    if (error) {
+      setMessage({ text: error, type: 'error' });
+    }
+  }, [error]);
 
   if (loading) {
     return (
       <div className='flex justify-center items-center h-screen'>
-        <div className='loader'></div> {/* ローディングコンポーネント */}
+        <div className='loader'></div>
       </div>
     );
   }
 
   return (
-    <div className='container mx-auto bg-white mb-5'>
-      <LedgerTable items={ledgerItems} />
+    <div className='container mx-auto bg-white'>
+      <MessageArea message={message.text} type={message.type} />
+      <div className='mt-1'>
+        <LedgerTable items={ledgerItems} />
+      </div>
     </div>
   );
 }

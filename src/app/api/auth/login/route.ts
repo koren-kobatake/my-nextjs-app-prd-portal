@@ -4,8 +4,6 @@ import { encode } from 'next-auth/jwt';
 export async function POST(request: NextRequest) {
   const { USERID, CIC } = await request.json();
 
-  console.log('USERID', USERID);
-  console.log('CIC', CIC);
   if (!USERID) {
     return NextResponse.json({ error: 'USERID is required' }, { status: 400 });
   }

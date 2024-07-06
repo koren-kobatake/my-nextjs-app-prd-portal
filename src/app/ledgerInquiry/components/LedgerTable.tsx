@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from "react";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
@@ -32,7 +32,7 @@ export function LedgerTable({ items }: { items: LedgerTableType[] }) {
     try {
       const response = await fetch(API_URLS.LEDGER_DOWNLOAD(id));
       if (!response.ok) {
-        throw new Error('ネットワーク応答が正常ではありません');
+        throw new Error('ダウンロードAPIでエラーレスポンスが発生');
       }
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -49,7 +49,7 @@ export function LedgerTable({ items }: { items: LedgerTableType[] }) {
 
   return (
     <div className='flex items-center py-4'>
-      <div className="w-full max-w-4xl mx-auto border rounded-lg shadow-lg my-8">
+      <div className="w-full max-w-4xl mx-auto border rounded-lg shadow-lg">
         <Table>
           <TableHeader>
             <TableRow>

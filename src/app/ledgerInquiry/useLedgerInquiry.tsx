@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { LedgerTableType } from "./types";
+import { LedgerTableType, MessageAreaType } from "./types";
 import { API_URLS } from "@/app/consts";
 
 /**
@@ -13,7 +13,9 @@ import { API_URLS } from "@/app/consts";
  */
 export function useLedgerInquiry() {
     const [ledgerItems, setLedgerItems] = useState<LedgerTableType[]>([]);
-    const [loading, setLoading] = useState(true);  // ローディングフラグを追加
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [message, setMessage] = useState<MessageAreaType>({ text: '', type: 'info' });
     const searchParams = useSearchParams();
     const userId = searchParams.get('userId');
     const cic = searchParams.get('cic');
@@ -31,8 +33,10 @@ export function useLedgerInquiry() {
                         body: JSON.stringify({ USERID: userId, CIC: cic }),
                     });
 
+                    console.log(loginResponse)
+
                     if (!loginResponse.ok) {
-                        console.error('ログインエラー');
+                        setError('ログインエラー');
                         setLoading(false);
                         return;
                     }
@@ -61,5 +65,12 @@ export function useLedgerInquiry() {
         fetchData();
     }, [userId, cic]);
 
-    return { ledgerItems, loading };  // loadingを追加
+    useEffect(() => {
+        // エラーメッセージがある場合、メッセージエリアにセット
+        if (error) {
+          setMessage({ text: error, type: 'error' });
+        }
+    }, [error]);    
+
+    return { ledgerItems, loading, error, message };  // loadingを追加
 }
