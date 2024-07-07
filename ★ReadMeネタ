@@ -68,11 +68,11 @@
 │   │   └── types.d.ts            # 型定義ファイル
 │   ├── components                # コンポーネント
 │   │   ├── common                # 共通コンポーネント
-│   │   │   ├── ErrorBoundary.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   ├── Header.tsx
-│   │   │   ├── MessageArea.tsx
-│   │   │   └── Title.tsx
+│   │   │   ├── ErrorBoundary.tsx # エラーバウンダリー
+│   │   │   ├── Footer.tsx        # アプリケーションフッター
+│   │   │   ├── Header.tsx        # アプリケーションヘッダー
+│   │   │   ├── MessageArea.tsx   # メッセージエリア
+│   │   │   └── Title.tsx         # タイトルエリア
 │   │   └── ui                    # shadcn/uiコンポーネント（Pocでは未使用）
 │   │       ├── button.tsx
 │   │       ├── calendar.tsx
@@ -107,9 +107,9 @@
 
 
 ・前提
-    Nodeバージョン : 20.14.0（20系が現時点でのActiveバージョン）
+    Nodeバージョン : 20.14.0（20系が2024/7/8時点でのActiveバージョン）
     https://nodejs.org/en/about/previous-releases
-    Nodeバージョン管理ツールをインストールして、プロジェクトNodeバージョンを固定化してください
+    Nodeバージョン管理ツールをインストールして、プロジェクトのNodeバージョンを固定化すること
 
 ・起動
     npm install
@@ -118,7 +118,8 @@
 ・デバッグ
     VSCodeの「実行とデバッグ」から"Next.js: debug full stack"を選択して実行
 
-・開発手引き
+＜開発手引き＞
+・開発方針
     機能開発で最低限必要なソース構成は以下になる（例：帳票照会）
     機能開発者は基本的にこの閉じられた機能ディレクトリ内で開発を進めることになる
     共通化可能なコンポーネントやユーティリティが発見された場合は周囲に相談すること
@@ -141,6 +142,7 @@
     │   │   │   └── useLedgerInquiry.tsx # カスタムフック
 
 ・UIコンポーネント
+    shadcn/uiの紹介
 
 ・ログ
     ライブラリ : pino
@@ -148,10 +150,12 @@
     フォーマット : 
 
 ・セッション管理
+    ライブラリ : NextAuth.js
 
 ・ソース管理
+    リポジトリ
+    共通化
 
-・エラーバウンダリー
 
 ・エラーハンドリング
     APIステータスは基本[ステータスコード]とする
@@ -166,5 +170,7 @@
         INTERNAL_SERVER_ERROR: 500, // サーバー内部で予期しないエラーが発生した場合に使用
         SERVICE_UNAVAILABLE: 503,   // サービスが一時的に利用できない場合に使用
 
+    エラーメッセージの画面表示について
 
+    エラーバウンダリーについて
 
