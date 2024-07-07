@@ -1,10 +1,10 @@
 import { Title } from '@/components/common/Title';
-import { PAGE_TITLE_NAMES } from '@/app/consts';
+import { PAGE_TITLE_NAMES } from '@/app/corporateListing/consts';
 
 /**
  * LedgerInquiryLayoutコンポーネント
  * 
- * 帳票照会ページのレイアウトを提供します。
+ * このコンポーネントは、帳票照会ページのレイアウトを提供します。
  * 
  * 機能:
  * - `Title`コンポーネントを使用して、ページのタイトルを表示します。
@@ -14,12 +14,13 @@ import { PAGE_TITLE_NAMES } from '@/app/consts';
  * <LedgerInquiryLayout>
  *   <YourChildComponent />
  * </LedgerInquiryLayout>
+ * 
  */
 export default function LedgerInquiryLayout({ children }: { children: React.ReactNode }) {
   return (
     <div>
       <div className="mb-5">
-        <Title title={PAGE_TITLE_NAMES.LEDGER_INQUIRY} />
+        <Title title={PAGE_TITLE_NAMES.COPORATE_LISTING} />
       </div>
       {children}
     </div>

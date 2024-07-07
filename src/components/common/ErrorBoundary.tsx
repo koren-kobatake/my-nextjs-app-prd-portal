@@ -10,6 +10,25 @@ interface ErrorBoundaryState {
   hasError: boolean;
 }
 
+/**
+ * ErrorBoundaryクラス
+ * 
+ * Reactアプリケーション内でエラーをキャッチし、
+ * フォールバックUIを表示するためのエラーバウンダリコンポーネントです。
+ * 
+ * 主な役割:
+ * 1. エラーキャッチ:
+ *    - 子コンポーネントで発生したエラーをキャッチし、コンポーネントの破壊を防ぎます。
+ * 
+ * 2. フォールバックUIの表示:
+ *    - エラーが発生した場合、ユーザーに表示するフォールバックUIを提供します。
+ * 
+ * 使用例:
+ * <ErrorBoundary>
+ *   <YourComponent />
+ * </ErrorBoundary>
+ * 
+ */
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
@@ -21,12 +40,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.error("ErrorBoundary caught an error", error, errorInfo);
+    console.error("ErrorBoundaryでエラーがキャッチされました", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return <div className="error-boundary-message">システムエラーが発生しました</div>;
     }
 
     return this.props.children;

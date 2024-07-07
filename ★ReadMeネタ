@@ -1,0 +1,170 @@
+├── Dockerfile                    # Dockerの設定ファイル
+├── README.md                     # プロジェクトの説明文書
+├── components.json               # コンポーネント設定ファイル
+├── docker-compose.yml            # Docker Composeの設定ファイル
+├── next-env.d.ts                 # Next.jsの環境設定ファイル
+├── next.config.mjs               # Next.jsの設定ファイル
+├── package-lock.json             # npmのロックファイル
+├── package.json                  # プロジェクトの依存関係ファイル
+├── postcss.config.mjs            # PostCSSの設定ファイル
+├── public                        # 公開リソースディレクトリ
+│   └── images                    # 画像ファイル
+│       └── logo.png              # ロゴ画像
+├── src                           # ソースコードディレクトリ
+│   ├── app                       # アプリケーションのルート
+│   │   ├── api                   # APIエンドポイント
+│   │   │   ├── auth              # 認証関連API
+│   │   │   │   ├── [...nextauth] # セッションAPI（NextAuth）
+│   │   │   │   │   ├── next-auth.d.ts
+│   │   │   │   │   ├── options.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── login        # ログインAPI
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── session      # セッション取得API
+│   │   │   │       └── route.ts
+│   │   │   ├── corporateListing # 法人一覧API
+│   │   │   │   ├── delete       # 削除API
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── detail       # 詳細API
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── listing      # 一覧API
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── login        # ログインAPI
+│   │   │   │       └── route.ts
+│   │   │   └── ledgerInquiry    # 帳票照会API
+│   │   │       ├── download     # ダウンロードAPI
+│   │   │       │   └── route.ts
+│   │   │       ├── listing      # 一覧API
+│   │   │       │   └── route.ts
+│   │   │       └── login        # ログインAPI
+│   │   │           └── route.ts
+│   │   ├── consts.ts             # 定数ファイル
+│   │   ├── corporateListing      # 法人一覧
+│   │   │   ├── components        # コンポーネント
+│   │   │   │   ├── CorporateDetailModal.tsx
+│   │   │   │   └── CorporateListingTable.tsx
+│   │   │   ├── consts.ts         # 定数ファイル
+│   │   │   ├── layout.tsx        # レイアウトファイル
+│   │   │   ├── page.tsx          # ページファイル
+│   │   │   ├── types.d.ts        # 型定義ファイル
+│   │   │   └── useCorporateListing.tsx # カスタムフック
+│   │   ├── ledgerInquiry         # 帳票照会
+│   │   │   ├── components        # コンポーネント
+│   │   │   │   └── LedgerTable.tsx
+│   │   │   ├── layout.tsx        # レイアウトファイル
+│   │   │   ├── page.tsx          # ページファイル
+│   │   │   ├── types.d.ts        # 型定義ファイル
+│   │   │   └── useLedgerInquiry.tsx # カスタムフック
+│   │   ├── login                 # ログイン
+│   │   │   ├── layout.tsx        # レイアウトファイル
+│   │   │   ├── page.tsx          # ページファイル
+│   │   │   └── useLogin.tsx      # カスタムフック
+│   │   ├── layout.tsx            # レイアウトファイル
+│   │   ├── page.tsx              # メインページファイル
+│   │   ├── logintest             # ログインテスト（削除予定）
+│   │   │   └── page.tsx          # ページファイル
+│   │   ├── sessiontest           # セッションテスト（削除予定）
+│   │   │   └── page.tsx          # ページファイル
+│   │   └── types.d.ts            # 型定義ファイル
+│   ├── components                # コンポーネント
+│   │   ├── common                # 共通コンポーネント
+│   │   │   ├── ErrorBoundary.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Header.tsx
+│   │   │   ├── MessageArea.tsx
+│   │   │   └── Title.tsx
+│   │   └── ui                    # shadcn/uiコンポーネント（Pocでは未使用）
+│   │       ├── button.tsx
+│   │       ├── calendar.tsx
+│   │       ├── card.tsx
+│   │       ├── checkbox.tsx
+│   │       ├── command.tsx
+│   │       ├── dialog.tsx
+│   │       ├── dropdown-menu.tsx
+│   │       ├── form.tsx
+│   │       ├── input.tsx
+│   │       ├── label.tsx
+│   │       ├── navigation-menu.tsx
+│   │       ├── pagination.tsx
+│   │       ├── popover.tsx
+│   │       ├── radio-group.tsx
+│   │       ├── select.tsx
+│   │       ├── switch.tsx
+│   │       ├── table.tsx
+│   │       ├── tabs.tsx
+│   │       └── textarea.tsx
+│   ├── lib                      # ライブラリファイル
+│   │   ├── logger.ts            # ログユーティリティ
+│   │   └── utils.ts             # ユーティリティ関数
+│   ├── middleware.ts            # ミドルウェア
+│   ├── styles                   # スタイルシート
+│   │   └── globals.css          # グローバルスタイル
+│   ├── types                    # 型定義ファイル
+│   └── utils                    # ユーティリティ関数
+│       └── logger.ts            # ログユーティリティ
+├── tailwind.config.ts           # Tailwind CSSの設定ファイル
+└── tsconfig.json                # TypeScriptの設定ファイル
+
+
+・前提
+    Nodeバージョン : 20.14.0（20系が現時点でのActiveバージョン）
+    https://nodejs.org/en/about/previous-releases
+    Nodeバージョン管理ツールをインストールして、プロジェクトNodeバージョンを固定化してください
+
+・起動
+    npm install
+    npm run dev
+
+・デバッグ
+    VSCodeの「実行とデバッグ」から"Next.js: debug full stack"を選択して実行
+
+・開発手引き
+    機能開発で最低限必要なソース構成は以下になる（例：帳票照会）
+    機能開発者は基本的にこの閉じられた機能ディレクトリ内で開発を進めることになる
+    共通化可能なコンポーネントやユーティリティが発見された場合は周囲に相談すること
+    ├── src
+    │   ├── app
+    │   │   ├── api
+    │   │   │   └── ledgerInquiry    # 帳票照会API（バックエンド側）
+    │   │   │       ├── download     # ダウンロードAPI
+    │   │   │       │   └── route.ts
+    │   │   │       ├── listing      # 一覧API
+    │   │   │       │   └── route.ts
+    │   │   │       └── login        # ログインAPI
+    │   │   │           └── route.ts
+    │   │   ├── ledgerInquiry         # 帳票照会（フロントエンド側）
+    │   │   │   ├── components        # コンポーネント
+    │   │   │   │   └── LedgerTable.tsx
+    │   │   │   ├── layout.tsx        # レイアウトファイル
+    │   │   │   ├── page.tsx          # ページファイル
+    │   │   │   ├── types.d.ts        # 型定義ファイル
+    │   │   │   └── useLedgerInquiry.tsx # カスタムフック
+
+・UIコンポーネント
+
+・ログ
+    ライブラリ : pino
+    ログレベル : info/warn/error/debug
+    フォーマット : 
+
+・セッション管理
+
+・ソース管理
+
+・エラーバウンダリー
+
+・エラーハンドリング
+    APIステータスは基本[ステータスコード]とする
+    バックエンド側でステータスコードをレスポンスにセットすること（Next.js、Lambda）
+    受信側はログ出力や、呼び出し元への返却など、仕様に基づき適宜処理すること
+    [ステータスコード]
+        OK: 200,                    // 正常
+        BAD_REQUEST: 400,           // リクエストが不正な場合に使用
+        UNAUTHORIZED: 401,          // 認証が必要なリソースに対して認証情報がない、または無効な場合に使用
+        FORBIDDEN: 403,             // リクエストされたリソースにアクセスする権限がない場合に使用
+        NOT_FOUND: 404,             // リクエストされたリソースが存在しない場合に使用
+        INTERNAL_SERVER_ERROR: 500, // サーバー内部で予期しないエラーが発生した場合に使用
+        SERVICE_UNAVAILABLE: 503,   // サービスが一時的に利用できない場合に使用
+
+
+

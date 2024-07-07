@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from "react";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
@@ -6,6 +6,12 @@ import { Button } from "@/components/ui/button";
 import { LedgerTableType } from "../types";
 import { API_URLS } from "@/app/consts";
 
+/**
+ * LedgerTable
+ * 
+ * 帳票データをテーブル形式で表示し、ページネーションとダウンロード機能を提供する。
+ * 
+ */
 export function LedgerTable({ items }: { items: LedgerTableType[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(20);
@@ -23,7 +29,7 @@ export function LedgerTable({ items }: { items: LedgerTableType[] }) {
     try {
       const response = await fetch(API_URLS.LEDGER_DOWNLOAD(id));
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('ダウンロードAPIでエラーレスポンスが発生');
       }
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -34,13 +40,13 @@ export function LedgerTable({ items }: { items: LedgerTableType[] }) {
       a.click();
       a.remove();
     } catch (error) {
-      console.error('Error downloading file:', error);
+      console.error('ファイルのダウンロードエラー:', error);
     }
   };
 
   return (
     <div className='flex items-center py-4'>
-      <div className="w-full max-w-4xl mx-auto border rounded-lg shadow-lg my-8">
+      <div className="w-full max-w-4xl mx-auto border rounded-lg shadow-lg">
         <Table>
           <TableHeader>
             <TableRow>

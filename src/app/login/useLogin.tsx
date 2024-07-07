@@ -1,21 +1,22 @@
+// TODO URLのクエリパラメータの仕様は不明（ユーザーIDのみでCICは不要？）
+
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { LedgerTableType } from "./types";
 import { MessageAreaType } from "@/app/types";
 import { API_URLS } from "@/app/consts";
 
 /**
- * useLedgerInquiry
+ * useLogin
  * 
  * URLのクエリパラメータからユーザーIDとCICを取得し、
- * ログイン処理を行い、指定されたAPIから帳票一覧を取得します。
+ * ログイン処理を行います。
  * 
  */
-export function useLedgerInquiry() {
-    const [ledgerItems, setLedgerItems] = useState<LedgerTableType[]>([]);
+export function useLogin() {
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState<string | null>(null);
     const [messageArea, setMessageArea] = useState<MessageAreaType>({ text: '', type: 'info' });
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const searchParams = useSearchParams();
     const userId = searchParams.get('userId');
     const cic = searchParams.get('cic');
@@ -39,17 +40,8 @@ export function useLedgerInquiry() {
                         return;
                     }
 
-                    // 帳票一覧取得
-                    const listingResponse = await fetch(API_URLS.LEDGER_LISTING);
-
-                    if (!listingResponse.ok) {
-                        console.error('帳票一覧の取得エラー');
-                        setLoading(false);
-                        return;
-                    }
-
-                    const data = await listingResponse.json();
-                    setLedgerItems(data.items);
+                    // ログイン成功
+                    setIsLoggedIn(true);
                 } catch (error) {
                     console.error('データ取得エラー:', error);
                 } finally {
@@ -69,5 +61,5 @@ export function useLedgerInquiry() {
         }
     }, [message]);    
 
-    return { ledgerItems, loading, message, messageArea };
+    return { loading, messageArea, isLoggedIn };
 }

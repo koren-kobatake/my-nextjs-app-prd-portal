@@ -1,3 +1,4 @@
+// TODO セッション確認用のテストページ（削除する）
 "use client"
 
 import { useState, FormEvent } from 'react';
