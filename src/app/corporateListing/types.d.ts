@@ -1,8 +1,8 @@
 // 帳票テーブル
 export type CorporateListingType = {
   id: number;
-  issueDate: string;
-  documentName: string;
+  cic: string;
+  corporateName: string;
 }
 
 // メッセージ表示

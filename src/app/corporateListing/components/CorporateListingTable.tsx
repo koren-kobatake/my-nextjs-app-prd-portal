@@ -7,15 +7,15 @@ import { CorporateListingType } from "../types";
 import { API_URLS } from "../consts";
 
 /**
- * CorporateMasterTable
+ * CorporateListingTable
  * 
- * 法人マスタデータをテーブル形式で表示し、ページネーションとダウンロード機能を提供する。
+ * 法人一覧データをテーブル形式で表示し、ページネーションとダウンロード機能を提供する。
  * 
  * @param {CorporateListingType[]} props.items - 法人一覧データの配列
  * 
  * @returns {JSX.Element} - テーブルコンポーネント
  */
-export function CorporateMasterTable({ items }: { items: CorporateListingType[] }) {
+export function CorporateListingTable({ items }: { items: CorporateListingType[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(20);
   const totalItems = items.length;
@@ -46,8 +46,8 @@ export function CorporateMasterTable({ items }: { items: CorporateListingType[] 
           <TableHeader>
             <TableRow>
               <TableHead className="text-right rounded-tl-lg bg-[#fdebd9] border-b border-[#fdebd9]">No.</TableHead>
-              <TableHead className="bg-[#fdebd9] border-b border-[#fdebd9]">発行日</TableHead>
-              <TableHead className="bg-[#fdebd9] border-b border-[#fdebd9]">書類名</TableHead>
+              <TableHead className="bg-[#fdebd9] border-b border-[#fdebd9]">CIC</TableHead>
+              <TableHead className="bg-[#fdebd9] border-b border-[#fdebd9]">法人名</TableHead>
               <TableHead className="rounded-tr-lg bg-[#fdebd9] border-b border-[#fdebd9]" />
             </TableRow>
           </TableHeader>
@@ -55,16 +55,24 @@ export function CorporateMasterTable({ items }: { items: CorporateListingType[] 
             {currentItems.map((item) => (
               <TableRow key={item.id}>
                 <TableCell className="text-right border-b border-muted">{item.id}</TableCell>
-                <TableCell className="border-b border-muted">{item.issueDate}</TableCell>
-                <TableCell className="border-b border-muted">{item.documentName}</TableCell>
+                <TableCell className="border-b border-muted">{item.cic}</TableCell>
+                <TableCell className="border-b border-muted">{item.corporateName}</TableCell>
                 <TableCell className="text-right border-b border-muted">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="border-[#eb7000] hover:bg-[#fdebd9] text-[#eb7000] hover:text-[#eb7000]　mr-2"
+                    onClick={() => handleDetail(item.id)}
+                  >
+                    詳細
+                  </Button>
                   <Button
                     size="sm"
                     variant="outline"
                     className="border-[#eb7000] hover:bg-[#fdebd9] text-[#eb7000] hover:text-[#eb7000]"
                     onClick={() => handleDetail(item.id)}
                   >
-                    ダウンロード
+                    削除
                   </Button>
                 </TableCell>
               </TableRow>

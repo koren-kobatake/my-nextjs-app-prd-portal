@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CorporateListingType, MessageAreaType } from "./types";
-import { API_URLS } from ".//consts";
+import { API_URLS } from "./consts";
 
 /**
  * useCorporateListing
@@ -9,7 +9,7 @@ import { API_URLS } from ".//consts";
  * 
  */
 export function useCorporateListing() {
-    const [corporateMasterItems, setCorporateMasterItems] = useState<CorporateListingType[]>([]);
+    const [corporateListingItems, setCorporateListingItems] = useState<CorporateListingType[]>([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState<string | null>(null);
     const [messageArea, setMessageArea] = useState<MessageAreaType>({ text: '', type: 'info' });
@@ -27,7 +27,7 @@ export function useCorporateListing() {
                 }
 
                 const data = await listingResponse.json();
-                setCorporateMasterItems(data.items);
+                setCorporateListingItems(data.items);
             } catch (error) {
                 console.error('データ取得エラー:', error);
             } finally {
@@ -44,5 +44,5 @@ export function useCorporateListing() {
         }
     }, [message]);    
 
-    return { corporateMasterItems, loading, messageArea };
+    return { corporateListingItems, loading, messageArea };
 }

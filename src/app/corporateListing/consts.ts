@@ -7,7 +7,6 @@ export const API_URLS = {
 
 // 画面タイトル名
 export const PAGE_TITLE_NAMES = {
-    LOGIN: 'ログイン',
     COPORATE_LISTING: '法人一覧',
     LEDGER_MASTER: '帳票マスタ',
 };

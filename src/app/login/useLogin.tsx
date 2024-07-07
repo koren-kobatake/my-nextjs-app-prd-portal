@@ -1,3 +1,5 @@
+// TODO URLのクエリパラメータの仕様は不明（ユーザーIDのみでCICは不要？）
+
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { MessageAreaType } from "@/app/types";

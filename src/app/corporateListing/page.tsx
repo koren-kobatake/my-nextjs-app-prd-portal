@@ -1,14 +1,14 @@
 'use client';
 
 import '@/styles/globals.css';
-import { CorporateMasterTable } from "./components/CorporateMasterTable";
+import { CorporateListingTable } from "./components/CorporateListingTable";
 import { useCorporateListing } from "./useCorporateListing";
 import { MessageArea } from "@/components/common/MessageArea";
 
 /**
  * CorporateListingPageコンポーネント
  * 
- * 法人一覧ページを表し、法人マスタデータのテーブルを表示します。
+ * 法人一覧を表示します。
  * 
  * 機能:
  * - `useCorporateListing`カスタムフックを使用して法人マスタ一覧データを取得します。
@@ -18,7 +18,7 @@ import { MessageArea } from "@/components/common/MessageArea";
  * <CorporateListingPage />
  */
 export default function CorporateListingPage() {
-  const { corporateMasterItems, loading, messageArea } = useCorporateListing();
+  const { corporateListingItems, loading, messageArea } = useCorporateListing();
 
   if (loading) {
     return (
@@ -32,7 +32,7 @@ export default function CorporateListingPage() {
     <div className='container mx-auto bg-white'>
       <MessageArea message={messageArea.text} type={messageArea.type} />
       <div className='mt-1'>
-        <CorporateMasterTable items={corporateMasterItems} />
+        <CorporateListingTable items={corporateListingItems} />
       </div>
     </div>
   );
