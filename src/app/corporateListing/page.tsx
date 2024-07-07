@@ -2,23 +2,23 @@
 
 import '@/styles/globals.css';
 import { CorporateMasterTable } from "./components/CorporateMasterTable";
-import { useCorporateMaster } from "./useCorporateMaster";
+import { useCorporateListing } from "./useCorporateListing";
 import { MessageArea } from "@/components/common/MessageArea";
 
 /**
- * CorporateMasterPageコンポーネント
+ * CorporateListingPageコンポーネント
  * 
- * 法人マスタ一覧ページを表し、法人マスタデータのテーブルを表示します。
+ * 法人一覧ページを表し、法人マスタデータのテーブルを表示します。
  * 
  * 機能:
- * - `useCorporateMaster`カスタムフックを使用して法人マスタ一覧データを取得します。
- * - 取得した帳票データを`CorporateMaster`コンポーネントに渡して表示します。
+ * - `useCorporateListing`カスタムフックを使用して法人マスタ一覧データを取得します。
+ * - 取得した帳票データを`CorporateListing`コンポーネントに渡して表示します。
  * 
  * 使用例:
- * <CorporateMasterPage />
+ * <CorporateListingPage />
  */
-export default function CorporateMasterPage() {
-  const { corporateMasterItems, loading, messageArea } = useCorporateMaster();
+export default function CorporateListingPage() {
+  const { corporateMasterItems, loading, messageArea } = useCorporateListing();
 
   if (loading) {
     return (

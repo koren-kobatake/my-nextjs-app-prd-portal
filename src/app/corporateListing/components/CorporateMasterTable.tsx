@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { CorporateMasterType } from "../types";
+import { CorporateListingType } from "../types";
 import { API_URLS } from "../consts";
 
 /**
@@ -11,11 +11,11 @@ import { API_URLS } from "../consts";
  * 
  * 法人マスタデータをテーブル形式で表示し、ページネーションとダウンロード機能を提供する。
  * 
- * @param {CorporateMasterType[]} props.items - 法人マスタデータの配列
+ * @param {CorporateListingType[]} props.items - 法人一覧データの配列
  * 
  * @returns {JSX.Element} - テーブルコンポーネント
  */
-export function CorporateMasterTable({ items }: { items: CorporateMasterType[] }) {
+export function CorporateMasterTable({ items }: { items: CorporateListingType[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(20);
   const totalItems = items.length;
@@ -30,7 +30,7 @@ export function CorporateMasterTable({ items }: { items: CorporateMasterType[] }
 
   const handleDetail = async (id: number) => {
     try {
-      const response = await fetch(API_URLS.COPORATE_MASTER_DETAIL(id));
+      const response = await fetch(API_URLS.COPORATE_DETAIL(id));
       if (!response.ok) {
         throw new Error('詳細APIでエラーレスポンスが発生');
       }

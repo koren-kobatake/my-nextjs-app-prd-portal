@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { CorporateMasterType, MessageAreaType } from "./types";
-import { API_URLS } from ".//consts";
+import { MessageAreaType } from "@/app/types";
+import { API_URLS } from "@/app/consts";
 
 /**
- * useCorporateMaster
+ * useLogin
  * 
  * URLのクエリパラメータからユーザーIDとCICを取得し、
- * ログイン処理を行い、指定されたAPIから法人マスタ一覧を取得します。
+ * ログイン処理を行います。
  * 
- * @returns {Object} - corporateMasterItemsオブジェクト（corporateMasterItemsは取得した帳票データの配列）
  */
-export function useCorporateMaster() {
-    const [corporateMasterItems, setCorporateMasterItems] = useState<CorporateMasterType[]>([]);
+export function useLogin() {
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState<string | null>(null);
     const [messageArea, setMessageArea] = useState<MessageAreaType>({ text: '', type: 'info' });
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const searchParams = useSearchParams();
     const userId = searchParams.get('userId');
     const cic = searchParams.get('cic');
@@ -33,25 +32,14 @@ export function useCorporateMaster() {
                         body: JSON.stringify({ USERID: userId, CIC: cic }),
                     });
 
-                    console.log(loginResponse)
-
                     if (!loginResponse.ok) {
                         setMessage('ログインエラー');
                         setLoading(false);
                         return;
                     }
 
-                    // 法人マスタ一覧取得
-                    const listingResponse = await fetch(API_URLS.COPORATE_MASTER_LISTING);
-
-                    if (!listingResponse.ok) {
-                        console.error('帳票一覧の取得エラー');
-                        setLoading(false);
-                        return;
-                    }
-
-                    const data = await listingResponse.json();
-                    setCorporateMasterItems(data.items);
+                    // ログイン成功
+                    setIsLoggedIn(true);
                 } catch (error) {
                     console.error('データ取得エラー:', error);
                 } finally {
@@ -71,5 +59,5 @@ export function useCorporateMaster() {
         }
     }, [message]);    
 
-    return { corporateMasterItems, loading, message, messageArea };
+    return { loading, messageArea, isLoggedIn };
 }

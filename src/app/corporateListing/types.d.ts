@@ -1,5 +1,5 @@
 // 帳票テーブル
-export type CorporateMasterType = {
+export type CorporateListingType = {
   id: number;
   issueDate: string;
   documentName: string;

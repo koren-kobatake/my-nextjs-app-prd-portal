@@ -1,13 +1,15 @@
 // APIエンドポイント
 export const API_URLS = {
     LOGIN: '/api/auth/login',
-    COPORATE_MASTER_LISTING: '/api/corporateMaster/listing',
-    COPORATE_MASTER_DETAIL: (id: number) => `/api/corporateMaster/detail?id=${id}`,
+    COPORATE_LISTING: '/api/corporateListing/listing',
+    COPORATE_DETAIL: (id: number) => `/api/corporate/detail?id=${id}`,
 };
 
 // 画面タイトル名
-export const CORPORATE_TITLE_NAMES = {
-    COPORATE_MASTER_LISTING: '法人マスタ一覧',
+export const PAGE_TITLE_NAMES = {
+    LOGIN: 'ログイン',
+    COPORATE_LISTING: '法人一覧',
+    LEDGER_MASTER: '帳票マスタ',
 };
 
 // HTTPステータスコード

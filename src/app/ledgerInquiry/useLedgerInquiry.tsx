@@ -34,8 +34,6 @@ export function useLedgerInquiry() {
                         body: JSON.stringify({ USERID: userId, CIC: cic }),
                     });
 
-                    console.log(loginResponse)
-
                     if (!loginResponse.ok) {
                         setMessage('ログインエラー');
                         setLoading(false);
