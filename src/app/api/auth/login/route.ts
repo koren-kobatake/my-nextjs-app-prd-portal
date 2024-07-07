@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { encode } from 'next-auth/jwt';
+import { HTTP_STATUS_CODES } from "@/app/consts";
 
 export async function POST(request: NextRequest) {
   const { USERID, CIC } = await request.json();
 
   if (!USERID) {
-    return NextResponse.json({ error: 'USERID is required' }, { status: 400 });
+    return NextResponse.json({ error: 'USERID is required' }, { status: HTTP_STATUS_CODES.BAD_REQUEST });
   }
 
   // TODO 認証処理（Lambda呼び出し）

@@ -8,6 +8,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/options';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { HTTP_STATUS_CODES } from "@/app/consts";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -57,7 +58,7 @@ class LoggerWrapper {
         const session = await getServerSession(authOptions);
         if (!session) {
         this.logger.error('Session not found');
-        return new NextResponse(JSON.stringify({ error: 'Not authenticated' }), { status: 401 });
+        return new NextResponse(JSON.stringify({ error: 'Not authenticated' }), { status: HTTP_STATUS_CODES.UNAUTHORIZED });
         }
     
         // userIDをログ出力

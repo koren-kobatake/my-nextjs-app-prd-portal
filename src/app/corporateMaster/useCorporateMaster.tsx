@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { LedgerTableType } from "./types";
-import { MessageAreaType } from "@/app/types";
-import { API_URLS } from "@/app/consts";
+import { CorporateMasterType, MessageAreaType } from "./types";
+import { API_URLS } from ".//consts";
 
 /**
- * useLedgerInquiry
+ * useCorporateMaster
  * 
  * URLのクエリパラメータからユーザーIDとCICを取得し、
- * ログイン処理を行い、指定されたAPIから帳票一覧を取得します。
+ * ログイン処理を行い、指定されたAPIから法人マスタ一覧を取得します。
  * 
- * @returns {Object} - ledgerItemsオブジェクト（ledgerItemsは取得した帳票データの配列）
+ * @returns {Object} - corporateMasterItemsオブジェクト（corporateMasterItemsは取得した帳票データの配列）
  */
-export function useLedgerInquiry() {
-    const [ledgerItems, setLedgerItems] = useState<LedgerTableType[]>([]);
+export function useCorporateMaster() {
+    const [corporateMasterItems, setCorporateMasterItems] = useState<CorporateMasterType[]>([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState<string | null>(null);
     const [messageArea, setMessageArea] = useState<MessageAreaType>({ text: '', type: 'info' });
@@ -42,8 +41,8 @@ export function useLedgerInquiry() {
                         return;
                     }
 
-                    // 帳票一覧取得
-                    const listingResponse = await fetch(API_URLS.LEDGER_LISTING);
+                    // 法人マスタ一覧取得
+                    const listingResponse = await fetch(API_URLS.COPORATE_MASTER_LISTING);
 
                     if (!listingResponse.ok) {
                         console.error('帳票一覧の取得エラー');
@@ -52,7 +51,7 @@ export function useLedgerInquiry() {
                     }
 
                     const data = await listingResponse.json();
-                    setLedgerItems(data.items);
+                    setCorporateMasterItems(data.items);
                 } catch (error) {
                     console.error('データ取得エラー:', error);
                 } finally {
@@ -72,5 +71,5 @@ export function useLedgerInquiry() {
         }
     }, [message]);    
 
-    return { ledgerItems, loading, message, messageArea };
+    return { corporateMasterItems, loading, message, messageArea };
 }

@@ -1,15 +1,13 @@
 // APIエンドポイント
 export const API_URLS = {
     LOGIN: '/api/auth/login',
-    LEDGER_LISTING: '/api/ledgerInquiry/listing',
-    LEDGER_DOWNLOAD: (id: number) => `/api/ledgerInquiry/download?id=${id}`,
     COPORATE_MASTER_LISTING: '/api/corporateMaster/listing',
     COPORATE_MASTER_DETAIL: (id: number) => `/api/corporateMaster/detail?id=${id}`,
 };
 
 // 画面タイトル名
-export const PAGE_TITLE_NAMES = {
-    LEDGER_INQUIRY: '帳票照会',
+export const CORPORATE_TITLE_NAMES = {
+    COPORATE_MASTER_LISTING: '法人マスタ一覧',
 };
 
 // HTTPステータスコード

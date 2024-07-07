@@ -1,6 +1,7 @@
 import { getServerSession } from 'next-auth/next';
 import { NextRequest, NextResponse } from 'next/server';
 import { authOptions } from '../[...nextauth]/options';
+import { HTTP_STATUS_CODES } from "@/app/consts";
 
 export async function GET(request: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -8,12 +9,12 @@ export async function GET(request: NextRequest) {
 
   if (!session) {
     return new NextResponse(JSON.stringify({ error: 'Not authenticated' }), {
-      status: 401,
+      status: HTTP_STATUS_CODES.UNAUTHORIZED,
     });
   }
 
   return new NextResponse(JSON.stringify(session), {
-    status: 200,
+    status: HTTP_STATUS_CODES.OK,
   });
 }
 

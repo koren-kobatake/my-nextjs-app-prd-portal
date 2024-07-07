@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
     // const cookie = serialize('user', encryptedUserId, { path: '/', httpOnly: true, secure: true });
 
     const baseUrl = `http://localhost:3000`;
-    const redirectUrl = `${baseUrl}/ledgerInquiry`;
+    const redirectUrl = `${baseUrl}/CorporateMaster`;
 
     const response = NextResponse.redirect(redirectUrl);
     response.headers.set('Set-Cookie', cookie);
