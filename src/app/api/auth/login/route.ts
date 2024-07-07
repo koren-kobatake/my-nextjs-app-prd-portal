@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { encode } from 'next-auth/jwt';
 import { HTTP_STATUS_CODES } from "@/app/consts";
 
+/**
+ * POSTリクエストハンドラー
+ * 
+ * POSTリクエストを処理し、ユーザーの認証情報を検証してセッションを生成します。
+ * 
+ * @param {NextRequest} request - Next.jsのリクエストオブジェクト。
+ * 
+ * @returns {NextResponse} - JSONレスポンスオブジェクトを返します。
+ */
 export async function POST(request: NextRequest) {
   const { USERID, CIC } = await request.json();
 

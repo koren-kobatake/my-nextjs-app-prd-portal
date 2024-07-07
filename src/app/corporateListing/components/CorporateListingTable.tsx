@@ -5,19 +5,20 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import { Button } from "@/components/ui/button";
 import { CorporateListingType } from "../types";
 import { API_URLS } from "../consts";
+import { CorporateDetailModal } from "./CorporateDetailModal";
 
 /**
  * CorporateListingTable
  * 
  * 法人一覧データをテーブル形式で表示し、ページネーションとダウンロード機能を提供する。
  * 
- * @param {CorporateListingType[]} props.items - 法人一覧データの配列
- * 
- * @returns {JSX.Element} - テーブルコンポーネント
  */
 export function CorporateListingTable({ items }: { items: CorporateListingType[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(20);
+  const [detailData, setDetailData] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const totalItems = items.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -34,9 +35,17 @@ export function CorporateListingTable({ items }: { items: CorporateListingType[]
       if (!response.ok) {
         throw new Error('詳細APIでエラーレスポンスが発生');
       }
+      const data = await response.json();
+      setDetailData(data.items);
+      setIsModalOpen(true);
     } catch (error) {
-      console.error('ファイルのダウンロードエラー:', error);
+      console.error('詳細データ取得エラー:', error);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setDetailData(null);
   };
 
   return (
@@ -80,6 +89,20 @@ export function CorporateListingTable({ items }: { items: CorporateListingType[]
           </TableBody>
         </Table>
       </div>
+
+      <CorporateDetailModal isOpen={isModalOpen} onClose={closeModal}>
+        <h2>法人詳細</h2>
+        {detailData ? (
+          <div>
+            <p>項目1: {detailData.aaa}</p>
+            <p>項目2: {detailData.bbb}</p>
+            <p>項目3: {detailData.ccc}</p>
+          </div>
+        ) : (
+          <p>...</p>
+        )}
+      </CorporateDetailModal>
+
     </div>
   );
 }

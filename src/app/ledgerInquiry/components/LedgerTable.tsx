@@ -11,9 +11,6 @@ import { API_URLS } from "@/app/consts";
  * 
  * 帳票データをテーブル形式で表示し、ページネーションとダウンロード機能を提供する。
  * 
- * @param {LedgerTableType[]} props.items - 帳票データの配列
- * 
- * @returns {JSX.Element} - テーブルコンポーネント
  */
 export function LedgerTable({ items }: { items: LedgerTableType[] }) {
   const [currentPage, setCurrentPage] = useState(1);

@@ -10,7 +10,6 @@ import { API_URLS } from "@/app/consts";
  * URLのクエリパラメータからユーザーIDとCICを取得し、
  * ログイン処理を行い、指定されたAPIから帳票一覧を取得します。
  * 
- * @returns {Object} - ledgerItemsオブジェクト（ledgerItemsは取得した帳票データの配列）
  */
 export function useLedgerInquiry() {
     const [ledgerItems, setLedgerItems] = useState<LedgerTableType[]>([]);

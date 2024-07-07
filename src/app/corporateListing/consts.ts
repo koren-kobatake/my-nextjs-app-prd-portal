@@ -2,7 +2,7 @@
 export const API_URLS = {
     LOGIN: '/api/auth/login',
     COPORATE_LISTING: '/api/corporateListing/listing',
-    COPORATE_DETAIL: (id: number) => `/api/corporate/detail?id=${id}`,
+    COPORATE_DETAIL: (id: number) => `/api/corporateListing/detail?id=${id}`,
 };
 
 // 画面タイトル名

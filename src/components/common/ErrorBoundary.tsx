@@ -28,8 +28,6 @@ interface ErrorBoundaryState {
  *   <YourComponent />
  * </ErrorBoundary>
  * 
- * @param {ErrorBoundaryProps} props - 子コンポーネントを含むプロパティ
- * @param {ErrorBoundaryState} state - エラー状態を示すステート
  */
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
