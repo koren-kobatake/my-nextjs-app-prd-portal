@@ -35,7 +35,7 @@ export function useLedgerInquiry() {
             if (userId && cic) {
                 try {
                     // ログイン処理
-                    const loginResponse = await fetch(API_URLS.LOGIN, {
+                    const loginResponse = await fetch(API_URLS.CREATE_SESSION_TOKEN, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

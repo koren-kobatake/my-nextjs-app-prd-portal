@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth/next';
 import { NextRequest, NextResponse } from 'next/server';
-import { authOptions } from '../[...nextauth]/options';
+import { authOptions } from '../../[...nextauth]/options';
 import { HTTP_STATUS_CODES } from "@/app/consts/httpStatusCodes";
 
 /**

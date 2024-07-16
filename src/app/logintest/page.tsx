@@ -12,7 +12,7 @@ export default function LoginPage() {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    const response = await fetch('/api/auth/login', {
+    const response = await fetch('/api/auth/session/createToken', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export default function LoginPage() {
   };
 
   const fetchSession = async () => {
-    const response = await fetch('/api/auth/session', {
+    const response = await fetch('/api/auth/session/getToken', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

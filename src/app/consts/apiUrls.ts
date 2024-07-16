@@ -8,7 +8,7 @@
  */
 
 export const API_URLS = {
-    LOGIN: '/api/auth/login',
+    CREATE_SESSION_TOKEN: '/api/auth/session/createToken',
     LEDGER_LISTING: '/api/ledgerInquiry/listing',
     LEDGER_DOWNLOAD: (id: number) => `/api/ledgerInquiry/download?id=${id}`,
 };

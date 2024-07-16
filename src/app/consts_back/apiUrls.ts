@@ -8,7 +8,7 @@
  */
 
 export const API_URLS = {
-    LOGIN: '/api/auth/login',
+    CREATE_SESSION_TOKEN: '/api/auth/session/createToken',
     COPORATE_LISTING: '/api/corporateListing/listing',
     COPORATE_DETAIL: (id: number) => `/api/corporateListing/detail?id=${id}`,
 };
