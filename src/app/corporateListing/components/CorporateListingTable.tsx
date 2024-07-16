@@ -5,7 +5,7 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import { Button } from "@/components/button";
 import { CorporateListingType } from "../types";
 import { API_URLS } from "@/app/consts_back/apiUrls";
-import { CorporateDetailModal } from "./CorporateDetailModal";
+import { CorporateDetailModal } from "./corporateDetailModal";
 
 /**
  * CorporateListingTable

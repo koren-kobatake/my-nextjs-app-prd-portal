@@ -2,7 +2,7 @@
 
 import '@/styles/globals.css';
 import { Suspense } from 'react';
-import { CorporateListingTable } from "./components/CorporateListingTable";
+import { CorporateListingTable } from "./components/corporateListingTable";
 import { useCorporateListing } from "./useCorporateListing";
 import { MessageArea } from "@/components/messageArea";
 
