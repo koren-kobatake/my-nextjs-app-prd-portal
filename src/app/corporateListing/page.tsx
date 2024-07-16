@@ -3,7 +3,7 @@
 import '@/styles/globals.css';
 import { CorporateListingTable } from "./components/CorporateListingTable";
 import { useCorporateListing } from "./useCorporateListing";
-import { MessageArea } from "@/components/common/MessageArea";
+import { MessageArea } from "@/components/MessageArea";
 
 /**
  * CorporateListingPageコンポーネント

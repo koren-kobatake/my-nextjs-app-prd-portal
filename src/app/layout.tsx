@@ -1,9 +1,9 @@
 import '@/styles/globals.css'
 import { ReactNode } from 'react';
-import ErrorBoundary from '../components/common/ErrorBoundary';
-import { Header } from '@/components/common/Header'
-import { HeaderForBack } from '@/components/common/HeaderForBack'
-import { Footer } from '@/components/common/Footer'
+import ErrorBoundary from '../components/ErrorBoundary';
+import { Header } from '@/components/Header'
+import { HeaderForBack } from '@/components/HeaderForBack'
+import { Footer } from '@/components/Footer'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

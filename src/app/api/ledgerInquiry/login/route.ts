@@ -71,7 +71,3 @@ export async function POST(req: NextRequest) {
     return response;
   }
 }
-
-export const config = {
-  runtime: 'edge',
-};

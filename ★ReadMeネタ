@@ -1,3 +1,9 @@
+＜決済バック＞
+http://localhost:3000/login?userId=AAA&cic=BBB
+＜決済ポータル＞
+http://localhost:3000/ledgerInquiry?userId=AAA&cic=BBB
+
+
 ├── Dockerfile                    # Dockerの設定ファイル
 ├── README.md                     # プロジェクトの説明文書
 ├── components.json               # コンポーネント設定ファイル
