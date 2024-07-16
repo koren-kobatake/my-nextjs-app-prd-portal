@@ -1,5 +1,23 @@
 // TODO ロガーをカスタマイズするために、pino-prettyを使用してログのフォーマットを変更ししたい
 // URL、ユーザーID、CICなどをログに追加するために、ログ出力メソッドを拡張する必要があります
+
+/**
+ * 【実装中】完成次第、logger.tsと置き換えます
+ * 
+ * このモジュールは、Pinoとpino-prettyを使用してログ出力をカスタマイズするための設定を提供します。
+ * 
+ * - `pino` を使用して、高性能で軽量なログ出力を実現します。
+ * - `pino-pretty` を使用して、ログメッセージを見やすく整形します。
+ * - `dayjs` を使用して、タイムゾーンを考慮した日時のフォーマットを提供します。
+ * - `LoggerWrapper` クラスを使用して、ログ出力メソッドを拡張し、セッション情報（ユーザーID、CICなど）をログに追加します。
+ * 
+ * 機能:
+ * - ログメッセージのカラー出力
+ * - JSTタイムゾーンでのタイムスタンプフォーマット
+ * - 環境に応じたログレベル設定（productionでは`info`、それ以外では`debug`）
+ * - リクエスト情報、セッション情報を含むログメッセージの出力
+ */
+
 import pino, { Logger } from 'pino';
 import pretty from 'pino-pretty';
 import { NextRequest, NextResponse } from 'next/server';
