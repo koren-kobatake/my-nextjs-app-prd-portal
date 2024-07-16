@@ -1,5 +1,7 @@
+'use client';
+
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { LedgerTableType } from "./types";
 import { MessageAreaType } from "@/app/types";
 import { API_URLS } from "@/app/consts";
@@ -16,9 +18,17 @@ export function useLedgerInquiry() {
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState<string | null>(null);
     const [messageArea, setMessageArea] = useState<MessageAreaType>({ text: '', type: 'info' });
-    const searchParams = useSearchParams();
-    const userId = searchParams.get('userId');
-    const cic = searchParams.get('cic');
+    const [userId, setUserId] = useState<string | null>(null);
+    const [cic, setCic] = useState<string | null>(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const query = new URLSearchParams(window.location.search);
+            setUserId(query.get('userId'));
+            setCic(query.get('cic'));
+        }
+    }, []);
 
     useEffect(() => {
         async function fetchData() {
@@ -67,7 +77,7 @@ export function useLedgerInquiry() {
         if (message) {
           setMessageArea({ text: message, type: 'error' });
         }
-    }, [message]);    
+    }, [message]);
 
     return { ledgerItems, loading, message, messageArea };
 }

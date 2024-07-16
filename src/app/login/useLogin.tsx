@@ -1,7 +1,9 @@
 // TODO URLのクエリパラメータの仕様は不明（ユーザーIDのみでCICは不要？）
 
+'use client';
+
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { MessageAreaType } from "@/app/types";
 import { API_URLS } from "@/app/consts";
 
@@ -17,9 +19,17 @@ export function useLogin() {
     const [message, setMessage] = useState<string | null>(null);
     const [messageArea, setMessageArea] = useState<MessageAreaType>({ text: '', type: 'info' });
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const searchParams = useSearchParams();
-    const userId = searchParams.get('userId');
-    const cic = searchParams.get('cic');
+    const [userId, setUserId] = useState<string | null>(null);
+    const [cic, setCic] = useState<string | null>(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const query = new URLSearchParams(window.location.search);
+            setUserId(query.get('userId'));
+            setCic(query.get('cic'));
+        }
+    }, []);
 
     useEffect(() => {
         async function fetchData() {

@@ -1,6 +1,7 @@
 'use client';
 
 import '@/styles/globals.css';
+import { Suspense } from 'react';
 import { CorporateListingTable } from "./components/CorporateListingTable";
 import { useCorporateListing } from "./useCorporateListing";
 import { MessageArea } from "@/components/MessageArea";
@@ -29,11 +30,13 @@ export default function CorporateListingPage() {
   }
 
   return (
-    <div className='container mx-auto bg-white'>
-      <MessageArea message={messageArea.text} type={messageArea.type} />
-      <div className='mt-1'>
-        <CorporateListingTable items={corporateListingItems} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className='container mx-auto bg-white'>
+        <MessageArea message={messageArea.text} type={messageArea.type} />
+        <div className='mt-1'>
+          <CorporateListingTable items={corporateListingItems} />
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
