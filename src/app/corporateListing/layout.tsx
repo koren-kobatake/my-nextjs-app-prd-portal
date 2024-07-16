@@ -1,5 +1,5 @@
 import { Title } from '@/components/Title';
-import { PAGE_TITLE_NAMES } from '@/app/corporateListing/consts';
+import { PAGE_TITLE_NAMES } from '@/app/consts_back/pageTitleNames';
 
 /**
  * LedgerInquiryLayoutコンポーネント

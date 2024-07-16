@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { LedgerTableType } from "./types";
 import { MessageAreaType } from "@/app/types";
-import { API_URLS } from "@/app/consts";
+import { API_URLS } from "@/app/consts/apiUrls";
 
 /**
  * useLedgerInquiry

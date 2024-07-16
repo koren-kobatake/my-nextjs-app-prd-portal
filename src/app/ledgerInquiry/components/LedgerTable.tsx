@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/Table";
 import { Button } from "@/components/Button";
 import { LedgerTableType } from "../types";
-import { API_URLS } from "@/app/consts";
+import { API_URLS } from "@/app/consts/apiUrls";
 
 /**
  * LedgerTable

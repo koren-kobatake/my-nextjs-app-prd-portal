@@ -1,17 +1,14 @@
-// APIエンドポイント
-export const API_URLS = {
-    LOGIN: '/api/auth/login',
-    COPORATE_LISTING: '/api/corporateListing/listing',
-    COPORATE_DETAIL: (id: number) => `/api/corporateListing/detail?id=${id}`,
-};
+/**
+ * httpStatusCodes.ts
+ * 
+ * アプリケーション内で使用されるHTTPステータスコードの定数を定義しています。
+ * 各ステータスコードは数値として定義されており、APIレスポンスのステータス設定に使用されます。
+ * 
+ * 使用例：
+ * import { HTTP_STATUS_CODES } from '@/app/consts/httpStatusCodes';
+ * console.log(HTTP_STATUS_CODES.OK);
+ */
 
-// 画面タイトル名
-export const PAGE_TITLE_NAMES = {
-    COPORATE_LISTING: '法人一覧',
-    LEDGER_MASTER: '帳票マスタ',
-};
-
-// HTTPステータスコード
 export const HTTP_STATUS_CODES = {
     OK: 200,            // 正常（デフォルトで設定されるため明示的に使用する必要なし）
     BAD_REQUEST: 400,   // リクエストが不正な場合に使用

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CorporateListingType, MessageAreaType } from "./types";
-import { API_URLS } from "./consts";
+import { API_URLS } from "@/app/consts_back/apiUrls";
 
 /**
  * useCorporateListing

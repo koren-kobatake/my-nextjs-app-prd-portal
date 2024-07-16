@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/options';
 import logger from '@/lib/logger';
-import { HTTP_STATUS_CODES } from "@/app/consts";
+import { HTTP_STATUS_CODES } from "@/app/consts_back/httpStatusCodes";
 
 /**
  * 法人一覧を返します。

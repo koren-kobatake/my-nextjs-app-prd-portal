@@ -8,7 +8,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/options';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
-import { HTTP_STATUS_CODES } from "@/app/consts";
+import { HTTP_STATUS_CODES } from "@/app/consts/httpStatusCodes";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

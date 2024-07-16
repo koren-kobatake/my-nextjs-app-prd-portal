@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { encode } from 'next-auth/jwt';
-import { HTTP_STATUS_CODES } from "@/app/consts";
+import { HTTP_STATUS_CODES } from "@/app/consts/httpStatusCodes";
 
 /**
  * POSTリクエストハンドラー

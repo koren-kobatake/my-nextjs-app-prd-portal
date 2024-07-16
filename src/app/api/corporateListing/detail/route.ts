@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import logger from '@/lib/logger';
-import { HTTP_STATUS_CODES } from "@/app/consts";
+import { HTTP_STATUS_CODES } from "@/app/consts_back/httpStatusCodes";
 
 /**
  * 法人詳細を返します。

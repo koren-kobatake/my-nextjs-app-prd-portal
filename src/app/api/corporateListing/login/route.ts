@@ -9,7 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { serialize } from 'cookie';
 import { EncryptJWT, generateSecret } from 'jose';
-import { HTTP_STATUS_CODES } from "@/app/consts";
+import { HTTP_STATUS_CODES } from "@/app/consts_back/httpStatusCodes";
 
 async function getSecret() {
   return await generateSecret('A256GCM');
