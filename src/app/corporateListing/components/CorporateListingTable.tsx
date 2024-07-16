@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from "react";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/Table";
-import { Button } from "@/components/Button";
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/table";
+import { Button } from "@/components/button";
 import { CorporateListingType } from "../types";
 import { API_URLS } from "@/app/consts_back/apiUrls";
 import { CorporateDetailModal } from "./CorporateDetailModal";

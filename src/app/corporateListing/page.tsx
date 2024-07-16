@@ -4,7 +4,7 @@ import '@/styles/globals.css';
 import { Suspense } from 'react';
 import { CorporateListingTable } from "./components/CorporateListingTable";
 import { useCorporateListing } from "./useCorporateListing";
-import { MessageArea } from "@/components/MessageArea";
+import { MessageArea } from "@/components/messageArea";
 
 /**
  * CorporateListingPageコンポーネント

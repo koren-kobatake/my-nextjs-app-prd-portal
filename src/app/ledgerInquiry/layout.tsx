@@ -1,4 +1,4 @@
-import { Title } from '@/components/Title';
+import { Title } from '@/components/title';
 import { PAGE_TITLE_NAMES } from '@/app/consts/pageTitleNames';
 
 /**

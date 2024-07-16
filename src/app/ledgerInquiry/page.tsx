@@ -3,7 +3,7 @@
 import '@/styles/globals.css';
 import { LedgerTable } from "./components/LedgerTable";
 import { useLedgerInquiry } from "./useLedgerInquiry";
-import { MessageArea } from "@/components/MessageArea";
+import { MessageArea } from "@/components/messageArea";
 
 /**
  * LedgerInquiryPageコンポーネント
