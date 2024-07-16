@@ -32,7 +32,7 @@ export default function CorporateListingPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className='container mx-auto bg-white'>
-        <MessageArea message={messageArea.text} type={messageArea.type} />
+        <MessageArea message={messageArea.message} type={messageArea.type} />
         <div className='mt-1'>
           <CorporateListingTable items={corporateListingItems} />
         </div>

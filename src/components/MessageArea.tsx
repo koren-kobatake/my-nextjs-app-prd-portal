@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 export type MessageType = 'error' | 'success' | 'warning' | 'info';
 
-type MessageAreaProps = {
+export type MessageAreaType = {
   message: string;
   type: MessageType;
 };
@@ -18,7 +18,7 @@ type MessageAreaProps = {
  * <MessageArea message="保存が成功しました。" type="success" />
  * 
  */
-export function MessageArea({ message, type }: MessageAreaProps) {
+export function MessageArea({ message, type }: MessageAreaType) {
   if (!message) return null;
 
   const messageClass = classNames(

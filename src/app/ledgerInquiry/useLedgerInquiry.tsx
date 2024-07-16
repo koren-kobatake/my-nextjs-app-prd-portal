@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { LedgerTableType } from "./types";
-import { MessageAreaType } from "@/app/types";
+import { MessageAreaType } from "@/components/messageArea";
 import { API_URLS } from "@/app/consts/apiUrls";
 
 /**
@@ -17,7 +17,7 @@ export function useLedgerInquiry() {
     const [ledgerItems, setLedgerItems] = useState<LedgerTableType[]>([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState<string | null>(null);
-    const [messageArea, setMessageArea] = useState<MessageAreaType>({ text: '', type: 'info' });
+    const [messageArea, setMessageArea] = useState<MessageAreaType>({ message: '', type: 'info' });
     const [userId, setUserId] = useState<string | null>(null);
     const [cic, setCic] = useState<string | null>(null);
     const router = useRouter();
@@ -44,6 +44,7 @@ export function useLedgerInquiry() {
                     });
 
                     if (!loginResponse.ok) {
+                        console.error('ログインエラー');
                         setMessage('ログインエラー');
                         setLoading(false);
                         return;
@@ -54,6 +55,7 @@ export function useLedgerInquiry() {
 
                     if (!listingResponse.ok) {
                         console.error('帳票一覧の取得エラー');
+                        setMessage('帳票一覧の取得エラー');
                         setLoading(false);
                         return;
                     }
@@ -61,7 +63,8 @@ export function useLedgerInquiry() {
                     const data = await listingResponse.json();
                     setLedgerItems(data.items);
                 } catch (error) {
-                    console.error('データ取得エラー:', error);
+                    console.error('XXXXXX:', error);
+                    setMessage('XXXXXX');
                 } finally {
                     setLoading(false);
                 }
@@ -75,7 +78,7 @@ export function useLedgerInquiry() {
 
     useEffect(() => {
         if (message) {
-          setMessageArea({ text: message, type: 'error' });
+          setMessageArea({ message: message, type: 'error' });
         }
     }, [message]);
 

@@ -35,7 +35,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      {messageArea.text && <p className={`message-${messageArea.type}`}>{messageArea.text}</p>}
+      {messageArea.message && <p className={`message-${messageArea.type}`}>{messageArea.message}</p>}
     </div>
   );
 };

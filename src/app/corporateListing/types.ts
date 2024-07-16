@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 // 帳票テーブル
 export type CorporateListingType = {
   id: number;
@@ -5,13 +7,7 @@ export type CorporateListingType = {
   corporateName: string;
 }
 
-// メッセージ表示
-export type MessageAreaType = {
-  text: string;
-  type: MessageType;
-}
-
-// メッセージ表示
+// モーダル
 export type ModalPropsType = {
   isOpen: boolean;
   onClose: () => void;

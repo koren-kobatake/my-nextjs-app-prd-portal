@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { CorporateListingType, MessageAreaType } from "./types";
+import { CorporateListingType } from "./types";
+import { MessageAreaType } from "@/components/messageArea";
 import { API_URLS } from "@/app/consts_back/apiUrls";
 
 /**
@@ -12,7 +13,7 @@ export function useCorporateListing() {
     const [corporateListingItems, setCorporateListingItems] = useState<CorporateListingType[]>([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState<string | null>(null);
-    const [messageArea, setMessageArea] = useState<MessageAreaType>({ text: '', type: 'info' });
+    const [messageArea, setMessageArea] = useState<MessageAreaType>({ message: '', type: 'info' });
 
     useEffect(() => {
         async function fetchData() {
@@ -21,6 +22,7 @@ export function useCorporateListing() {
                 const listingResponse = await fetch(API_URLS.COPORATE_LISTING);
 
                 if (!listingResponse.ok) {
+                    setMessage('法人一覧の取得エラー');
                     console.error('法人一覧の取得エラー');
                     setLoading(false);
                     return;
@@ -29,8 +31,9 @@ export function useCorporateListing() {
                 const data = await listingResponse.json();
                 setCorporateListingItems(data.items);
             } catch (error) {
-                console.error('データ取得エラー:', error);
-            } finally {
+                console.error('XXXXXX:', error);
+                setMessage('XXXXXX');
+        } finally {
                 setLoading(false);
             }
         }
@@ -40,7 +43,7 @@ export function useCorporateListing() {
 
     useEffect(() => {
         if (message) {
-          setMessageArea({ text: message, type: 'error' });
+          setMessageArea({ message: message, type: 'error' });
         }
     }, [message]);    
 

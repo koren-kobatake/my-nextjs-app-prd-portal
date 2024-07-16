@@ -30,7 +30,7 @@ export default function LedgerInquiryPage() {
 
   return (
     <div className='container mx-auto bg-white'>
-      <MessageArea message={messageArea.text} type={messageArea.type} />
+      <MessageArea message={messageArea.message} type={messageArea.type} />
       <div className='mt-1'>
         <LedgerTable items={ledgerItems} />
       </div>

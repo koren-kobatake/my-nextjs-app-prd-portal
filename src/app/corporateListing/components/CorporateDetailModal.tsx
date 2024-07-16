@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from "@/components/button";
-import { ModalPropsType } from "../types";
+import type { ModalPropsType } from "../types";
 
 /**
  * CorporateDetailModalコンポーネント

@@ -1,10 +1,10 @@
-// TODO URLのクエリパラメータの仕様は不明（ユーザーIDのみでCICは不要？）
+// TODO URLのクエリパラメータの仕様は不明なのでわかり次第追記すること
 
 'use client';
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { MessageAreaType } from "@/app/types";
+import { MessageAreaType } from "@/components/messageArea";
 import { API_URLS } from "@/app/consts/apiUrls";
 
 /**
@@ -17,7 +17,7 @@ import { API_URLS } from "@/app/consts/apiUrls";
 export function useLogin() {
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState<string | null>(null);
-    const [messageArea, setMessageArea] = useState<MessageAreaType>({ text: '', type: 'info' });
+    const [messageArea, setMessageArea] = useState<MessageAreaType>({ message: '', type: 'info' });
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState<string | null>(null);
     const [cic, setCic] = useState<string | null>(null);
@@ -53,7 +53,8 @@ export function useLogin() {
                     // ログイン成功
                     setIsLoggedIn(true);
                 } catch (error) {
-                    console.error('データ取得エラー:', error);
+                    console.error('XXXXXX:', error);
+                    setMessage('XXXXXX');
                 } finally {
                     setLoading(false);
                 }
@@ -67,7 +68,7 @@ export function useLogin() {
 
     useEffect(() => {
         if (message) {
-          setMessageArea({ text: message, type: 'error' });
+          setMessageArea({ message: message, type: 'error' });
         }
     }, [message]);    
 
