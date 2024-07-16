@@ -59,15 +59,15 @@ export async function POST(req: NextRequest) {
     const response = NextResponse.redirect(redirectUrl);
     response.headers.set('Set-Cookie', cookie);
 
-    // CORSヘッダーを追加
-    response.headers.set('Access-Control-Allow-Origin', '127.0.0.1:8000');
-    response.headers.set('Access-Control-Allow-Credentials', 'true');
+    // // CORSヘッダーを追加
+    // response.headers.set('Access-Control-Allow-Origin', '127.0.0.1:8000');
+    // response.headers.set('Access-Control-Allow-Credentials', 'true');
 
     return response;
   } else {
     const response = NextResponse.json({ message: '認証されていません' }, { status: HTTP_STATUS_CODES.UNAUTHORIZED });
-    response.headers.set('Access-Control-Allow-Origin', '*');
-    response.headers.set('Access-Control-Allow-Credentials', 'true');
+    // response.headers.set('Access-Control-Allow-Origin', '*');
+    // response.headers.set('Access-Control-Allow-Credentials', 'true');
     return response;
   }
 }

@@ -65,14 +65,14 @@ export async function middleware(req: NextRequest) {
     } catch (err) {
       console.error('Failed to decrypt cookie:', err);
       const response = NextResponse.redirect(new URL('/login', req.url));
-      response.headers.set('Access-Control-Allow-Origin', '*');
-      response.headers.set('Access-Control-Allow-Credentials', 'true');
+      // response.headers.set('Access-Control-Allow-Origin', '*');
+      // response.headers.set('Access-Control-Allow-Credentials', 'true');
       return response;
     }
   } else if (req.nextUrl.pathname === '/ledger') {
     const response = NextResponse.redirect(new URL('/login', req.url));
-    response.headers.set('Access-Control-Allow-Origin', '*');
-    response.headers.set('Access-Control-Allow-Credentials', 'true');
+    // response.headers.set('Access-Control-Allow-Origin', '*');
+    // response.headers.set('Access-Control-Allow-Credentials', 'true');
     return response;
   }
 
