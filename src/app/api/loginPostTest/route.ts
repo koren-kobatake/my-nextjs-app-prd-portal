@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
-  const { userId, cic } = await req.json();
+  const { userId, sessionId, cic, urlPath } = await req.json();
 
   const baseUrl = `http://localhost:3000`;
-  const redirectUrl = `${baseUrl}/ledgerInquiryPostTest`;
+  // const redirectUrl = `${baseUrl}/ledgerInquiryPostTest`;
+  const redirectUrl = `${baseUrl}/${urlPath}`;
 
   const response = NextResponse.json({ redirectUrl });
 
