@@ -1,6 +1,5 @@
 import type { NextAuthOptions } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
-import CredentialsProvider from 'next-auth/providers/credentials'
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 const maxAge = process.env.SESSION_MAX_AGE ? parseInt(process.env.SESSION_MAX_AGE, 10) : undefined;
 const sessionUpdateAge = process.env.SESSION_UPDATE_AGE ? parseInt(process.env.SESSION_UPDATE_AGE, 10) : undefined;
@@ -8,15 +7,19 @@ const sessionUpdateAge = process.env.SESSION_UPDATE_AGE ? parseInt(process.env.S
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      id: 'credentials',
+      name: 'credentials',
       credentials: {
         username: { label: 'Username', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      authorize: async (credentials) => {
+      authorize: async (credentials, req) => {
+        console.log('Authorize method called');
+        console.log('Credentials:', credentials);
+
         // 擬似的な認証処理
-        if (credentials?.username === 'test' && credentials?.password === 'password') {
-          return { id: 'user_123', userId: 'user_123', name: 'Test User', email: 'test@example.com', role: 'user' };
+        if (credentials?.username === 'user_123' && credentials?.password === 'password') {
+          return { id: 'user_123', userId: 'user_123', username: 'user_123', role: 'user', cic: 'cic', env: 'env' };
         }
         // 認証失敗
         return null;
@@ -29,18 +32,15 @@ export const authOptions: NextAuthOptions = {
         token.userId = user.userId;
         token.cic = user.cic;
         token.role = user.role;
-        token.env = user.env;
-        token.jti = user.jti || token.jti;
       }
       return token;
     },
-    async session({ session, token }: { session: any; token: JWT }) {
+    async session({ session, token }) {
       session.user = {
         ...session.user,
         userId: token.userId,
         cic: token.cic,
         role: token.role,
-        env: token.env,
       };
       session.sessionId = token.jti;
       // 有効期限を追加
