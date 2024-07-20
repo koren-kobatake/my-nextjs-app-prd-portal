@@ -72,39 +72,41 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]/options';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { serialize } from 'cookie';
+import { redirect } from 'next/navigation'
+
 
 export async function POST(req: NextRequest) {
   try {
     const { userId, sessionId, cic, urlPath } = await req.json();
 
-    // NextRequestからヘッダーを取得
-    const headers: { [key: string]: string } = {};
-    req.headers.forEach((value, key) => {
-      headers[key] = value;
-    });
+    // // NextRequestからヘッダーを取得
+    // const headers: { [key: string]: string } = {};
+    // req.headers.forEach((value, key) => {
+    //   headers[key] = value;
+    // });
 
-    // 新しいリクエストオブジェクトを作成
-    const apiRequest = {
-      headers,
-      body: null,
-      query: {},
-      cookies: {},
-      method: req.method,
-    } as unknown as NextApiRequest;
+    // // 新しいリクエストオブジェクトを作成
+    // const apiRequest = {
+    //   headers,
+    //   body: null,
+    //   query: {},
+    //   cookies: {},
+    //   method: req.method,
+    // } as unknown as NextApiRequest;
 
-    // 新しいレスポンスオブジェクトを作成
-    const apiResponse = {} as NextApiResponse;
+    // // 新しいレスポンスオブジェクトを作成
+    // const apiResponse = {} as NextApiResponse;
 
-    // CSRFトークンを取得
-    const csrfToken = await getCsrfToken({ req: apiRequest });
+    // // CSRFトークンを取得
+    // const csrfToken = await getCsrfToken({ req: apiRequest });
 
-    if (!csrfToken) {
-      throw new Error('Failed to obtain CSRF token');
-    }
+    // if (!csrfToken) {
+    //   throw new Error('Failed to obtain CSRF token');
+    // }
 
     // APIコール
     const bodyParams = new URLSearchParams({
-      csrfToken,
+      // csrfToken,
       username: userId,
       password: sessionId, // Assuming password is sessionId for demonstration
     });
@@ -121,39 +123,41 @@ export async function POST(req: NextRequest) {
       throw new Error(`Failed to call authorization API: ${authResponse.statusText}`);
     }
 
-    // 認証後のクッキーを取得して設定
-    const cookies = authResponse.headers.get('set-cookie');
-    if (cookies) {
-      cookies.split(',').forEach(cookie => {
-        const parsedCookie = cookie.split(';')[0];
-        const [name, value] = parsedCookie.split('=');
-        if (name && value) {
-          apiRequest.cookies[name.trim()] = value.trim();
-        }
-      });
-    }
-
-    // // 認証後のセッションを取得
-    // const session = await getServerSession(authOptions);
-    // // const session = await getServerSession(apiRequest, apiResponse, authOptions);
-
-    // if (!session) {
-    //   throw new Error('Failed to get session after authentication');
-    // }
-
-    // console.log('Session:', session);
-
     const baseUrl = `http://localhost:3000`;
     const redirectUrl = `${baseUrl}/${urlPath}`;
 
-    const response = NextResponse.json({ redirectUrl });
+    // const response = NextResponse.json({ redirectUrl });
+    // const response = NextResponse.redirect(redirectUrl);
+    redirect('/ledgerInquiryPostTest')
 
-    // CORSヘッダーを設定
-    response.headers.set('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
-    response.headers.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-    response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
 
-    return response;
+    // // CORSヘッダーを設定
+    // response.headers.set('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
+    // response.headers.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+    // response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+
+
+
+    // // 認証後のクッキーを取得して設定
+    // const cookies = authResponse.headers.get('set-cookie');
+    // if (cookies) {
+    //   cookies.split(',').forEach(cookie => {
+    //     const parsedCookie = cookie.split(';')[0];
+    //     const [name, value] = parsedCookie.split('=');
+    //     if (name && value && name==='next-auth.csrf-token') {
+    //       // apiRequest.cookies[name.trim()] = value.trim();
+    //       response.cookies.set('next-auth.session-token', value.trim(), {
+    //         httpOnly: true,
+    //         secure: process.env.NODE_ENV === 'production',
+    //       });
+    //     }
+    //   });
+    // }
+
+
+
+    // return response;
+
   } catch (error) {
     console.error('Error during authentication:', error);
 

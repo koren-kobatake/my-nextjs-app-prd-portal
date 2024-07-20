@@ -9,6 +9,7 @@
 
 export const API_URLS = {
     CREATE_SESSION_TOKEN: '/api/auth/session/createToken',
+    GET_SESSION_TOKEN: '/api/auth/session/getToken',
     LEDGER_LISTING: '/api/ledgerInquiry/listing',
     LEDGER_DOWNLOAD: (id: number) => `/api/ledgerInquiry/download?id=${id}`,
 };

@@ -37,13 +37,28 @@ export function useLedgerInquiry() {
         async function fetchData() {
             if (userId && cic) {
                 try {
-                    // ログイン処理
-                    const loginResponse = await fetch(API_URLS.CREATE_SESSION_TOKEN, {
-                        method: 'POST',
+                    // // ログイン処理
+                    // const loginResponse = await fetch(API_URLS.CREATE_SESSION_TOKEN, {
+                    //     method: 'POST',
+                    //     headers: {
+                    //         'Content-Type': 'application/json',
+                    //     },
+                    //     body: JSON.stringify({ USERID: userId, CIC: cic }),
+                    // });
+
+                    // if (!loginResponse.ok) {
+                    //     console.error('ログインエラー');
+                    //     setMessage('ログインエラー');
+                    //     setLoading(false);
+                    //     return;
+                    // }
+
+                    // セッション取得
+                    const loginResponse = await fetch(API_URLS.GET_SESSION_TOKEN, {
+                        method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ USERID: userId, CIC: cic }),
                     });
 
                     if (!loginResponse.ok) {
