@@ -54,7 +54,7 @@ export function useLedgerInquiry() {
                     // }
 
                     // セッション取得
-                    const loginResponse = await fetch(API_URLS.GET_SESSION_TOKEN, {
+                    const loginResponse = await fetch('/api/auth/auth-test/get-session', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
